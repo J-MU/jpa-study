@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -16,12 +17,14 @@ public class JpaMain {
         tx.begin();
         //code
         try{
-            Member member=new Member();
-            member.setId(3L);
-            member.setName("제제");
-            member.setRoleType(RoleType.GUEST);
+            Member memberA=new Member("이안");
+            Member memberB=new Member("민욱");
+            Member memberC=new Member("제제");
+            em.persist(memberA);
+            em.persist(memberB);
+            em.persist(memberC);
 
-            em.persist(member);
+
             tx.commit();
         }catch (Exception e){
             tx.rollback();
