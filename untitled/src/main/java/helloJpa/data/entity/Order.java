@@ -37,6 +37,15 @@ public class Order {
     @OneToMany(mappedBy="order")
     private List<OrderItem> orderItems=new ArrayList<>();
 
+
+    @OneToOne
+    @JoinColumn(name="DELIVERY_ID")
+    private Delivery delivery;
+
+    public void setDelivery(Delivery delivery){
+        this.delivery=delivery;
+        delivery.setOrder(this);
+    }
     public void setMember(Member member){
         if(this.member !=null){
             this.member.getOrderList().remove(this);
